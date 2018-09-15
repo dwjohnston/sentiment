@@ -86,19 +86,13 @@ async function saveData(json) {
 
 async function fetchData() {
     console.log("fetching data");
-    let json;
     try {
         const data = await fetch(endPoint);
-        json = await data.json();
+        const json = await data.json();
+        await saveData(json);
 
     }
     catch (error) {
-        handleError(error);
-    }
-
-    try {
-        await saveData(json);
-    } catch (error) {
         handleError(error);
     }
 }
