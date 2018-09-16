@@ -10,6 +10,8 @@ import Footer from "../Footer/Footer";
 import Body from "../Body/Body"
 
 import { withStyles } from '@material-ui/core/styles';
+import AllArticles from "../AllArticles/AllArticles";
+import ErrorBanner from "../ErrorBanner/ErrorBanner";
 
 const theme = createMuiTheme({
   palette: {
@@ -41,12 +43,8 @@ function App(props) {
           <Header />
 
           <Body className={classes.body}>
-            <p>
-              Here's some text
-            </p>
-            <Button variant="contained" color="primary">
-              Hello World
-         </Button>
+            <ErrorBanner />
+            <AllArticles />
           </Body>
           <Footer />
         </div>

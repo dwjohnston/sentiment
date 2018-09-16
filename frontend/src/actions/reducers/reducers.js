@@ -7,6 +7,7 @@ const initialState = {
 
 function generalError(state, payload) {
 
+    console.log(payload);
     return {
         hasError: true,
         error: payload.error
@@ -15,6 +16,7 @@ function generalError(state, payload) {
 
 function populateArticles(state, payload) {
 
+    console.log(payload);
     return {
         articles: payload.articles
     };
@@ -26,15 +28,14 @@ function assign(state, data) {
 
 export function allReducers(state = initialState, action) {
 
+    console.log(action);
     switch (action.type) {
         case Actions.POPULATE_ARTICLES: {
-            return assign(state, populateArticles(action.payload));
+            return assign(state, populateArticles(state, action.payload));
         }
-
         case Actions.GENERAL_ERROR: {
-            return assign(state, generalError(action.payload));
+            return assign(state, generalError(state, action.payload));
         }
-
         default:
             return state;
     }
