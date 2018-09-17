@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-frontend
+  name: content-api
   labels:
     app: sentiment
 spec:
@@ -15,7 +15,8 @@ spec:
         app: sentiment
     spec:
       containers:
-        - name: nginx-frontend
-          image: sentiment-frontend
+        - name: content-api
+          image: sentiment-content-api
+          imagePullPolicy: "IfNotPresent"
           ports:
-            - containerPort: 80
+            - containerPort: 3001

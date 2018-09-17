@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-docker build -t fe . 
+docker build -t sentiment-frontend . 
