@@ -4,19 +4,22 @@ metadata:
   name: content-api
   labels:
     app: sentiment
+    type: api
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: sentiment
+      type: api
   template:
     metadata:
       labels:
         app: sentiment
+        type: api
     spec:
       containers:
-        - name: content-api
-          image: sentiment-content-api
+        - name: sentiment-content-api
+          image: sentiment/content-api
           imagePullPolicy: "IfNotPresent"
           ports:
             - containerPort: 3001

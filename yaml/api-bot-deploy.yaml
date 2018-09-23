@@ -4,17 +4,20 @@ metadata:
   name: api-bot
   labels:
     app: sentiment
+    type: bot
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: sentiment
+      type: bot
   template:
     metadata:
       labels:
         app: sentiment
+        type: bot
     spec:
       containers:
-        - name: api-bot
-          image: sentiment-api-bot
+        - name: sentiment-api-bot
+          image: sentiment/api-bot
           imagePullPolicy: "IfNotPresent"

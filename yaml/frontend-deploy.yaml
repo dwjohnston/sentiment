@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-frontend
+  name: sentiment-frontend
   labels:
     app: sentiment
 spec:
@@ -9,14 +9,16 @@ spec:
   selector:
     matchLabels:
       app: sentiment
+      type: frontend
   template:
     metadata:
       labels:
         app: sentiment
+        type: frontend
     spec:
       containers:
-        - name: nginx-frontend
-          image: sentiment-frontend
+        - name: sentiment-frontend
+          image: sentiment/frontend
           imagePullPolicy: "IfNotPresent"
           ports:
             - containerPort: 80
