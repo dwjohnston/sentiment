@@ -19,9 +19,12 @@
     "eject": "react-scripts eject"
   },
   "proxy": {
-    "/api": {
+    "/api/v1": {
       "target": "http://localhost:3001/",
-      "ws": true
+      "ws": true,
+      "pathRewrite": {
+        "^/api/v1": ""
+      }
     }
   }
 }

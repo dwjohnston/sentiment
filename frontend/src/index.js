@@ -8,7 +8,7 @@ import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { Provider } from "react-redux";
 import LogRocket from "logrocket";
-import config from "./config.json";
+import config from "./config-secret.json";
 LogRocket.init(config.logrocket.id);
 
 const store = createStore(allReducers, applyMiddleware(thunk));
