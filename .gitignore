@@ -1,5 +1,5 @@
 node_modules/ 
-**/prod/
+yaml/prod/*.yaml
 *-secret.json
 *prod.sh
 .gitsecret/keys/random_seed
