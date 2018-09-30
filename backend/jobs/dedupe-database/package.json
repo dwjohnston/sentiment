@@ -1,0 +1,17 @@
+{
+  "name": "dedupe-database",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --experimental-modules index3.mjs"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "moment": "^2.22.2",
+    "mongodb": "^3.1.6",
+    "node-fetch": "^2.2.0"
+  }
+}
