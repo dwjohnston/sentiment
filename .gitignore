@@ -1,6 +1,7 @@
 node_modules/ 
 yaml/prod/*.yaml
 *-secret.json
+*-secret.txt 
 *prod.sh
 .gitsecret/keys/random_seed
 

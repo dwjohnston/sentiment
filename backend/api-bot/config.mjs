@@ -1,6 +1,16 @@
-import env from "./environment-secret.json";
+import env from "./config.json";
 
-export default function () {
-    var node_env = process.env.NODE_ENV || 'development';
-    return env[node_env];
-};
+export default function() {
+  let config = {};
+
+  for (let str of env) {
+    let str2 = str;
+    if (process.env.NODE_ENV === "dev") {
+      str2 = "SENTIMENT_" + str;
+    }
+
+    config[str] = process.env[str2];
+  }
+
+  return config;
+}

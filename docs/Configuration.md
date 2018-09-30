@@ -15,6 +15,7 @@ This is a list of all the configuration variables, secret or not, that need to b
 **url**: eg. "https://newsapi.org/v2/"
 **apikey**: eg. "1235" SECRET
 **polling_interval**: eg. 54000000 //15 minutes
+**sources** eg. ["the-washington-post","fox-news","bbc-news","cnn"]
 
 ## Kubernetes
 
