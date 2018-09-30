@@ -3,6 +3,6 @@ yaml/prod/*.yaml
 *-secret.json
 *prod.sh
 .gitsecret/keys/random_seed
-secrettest/*.txt
+
 
 
