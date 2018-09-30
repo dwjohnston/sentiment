@@ -3,5 +3,6 @@ node_modules/
 *-secret.json
 *prod.sh
 .gitsecret/keys/random_seed
-secrettest/
+secrettest/*.txt
+
 
