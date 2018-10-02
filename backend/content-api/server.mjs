@@ -1,14 +1,15 @@
 import MongoClient from "mongodb";
 import express from "express";
-import getConfig from "./config";
+import getConfig from "../../common/config";
+import confArray from "./config.json";
 //import mongoose from "mongoose";
-const config = getConfig();
+const config = getConfig(confArray);
 const app = express();
 
 function getDbString() {
-  return `mongodb://${config.db.username}:${config.db.password}@${
-    config.db.url
-  }/${config.db.name}`;
+  return `mongodb://${config.DB_CONTENT_API_USERNAME}:${
+    config.DB_CONTENT_API_PASSWORD
+  }@${config.DB_URL}/${config.DB_NAME}`;
 }
 
 const dbString = getDbString();
@@ -34,7 +35,7 @@ app.get("/all", async (req, res) => {
   try {
     const collection = client
       .db(config.db.name)
-      .collection(config.db.collectionName);
+      .collection(config.DB_COLLECTION_NAME);
     const articles = await collection
       .find({})
       .limit(10)
