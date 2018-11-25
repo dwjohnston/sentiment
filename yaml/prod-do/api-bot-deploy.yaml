@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-bot
+  labels:
+    app: sentiment
+    type: bot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sentiment
+      type: bot
+  template:
+    metadata:
+      labels:
+        app: sentiment
+        type: bot
+    spec:
+      containers:
+        - name: sentiment-api-bot
+          image: quartercog/sentiment-api-bot
+          imagePullPolicy: "Always"
+          env:
+            - name: DB_URL
+              value: "ds213513.mlab.com:13513"
+            - name: DB_NAME
+              value: "sentiment-prod-test"
+            - name: DB_API_BOT_USERNAME
+              value: "api-bot"
+            - name: DB_API_BOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: sentiment-secrets
+                  key: db_api_bot_password
+            - name: DB_COLLECTION_NAME
+              value: "articles"
+            - name: NEWSAPI_URL
+              value: "https://newsapi.org/v2/"
+            - name: NEWSAPI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: sentiment-secrets
+                  key: news_api_apikey
+            - name: POLLING_RATE
+              value: "903000"

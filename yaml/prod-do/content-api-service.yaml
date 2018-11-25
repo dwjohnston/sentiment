@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: sentiment
+    type: api
+  name: sentiment-content-api
+  selfLink: /api/v1/namespaces/default/services/sentiment-api
+spec:
+  externalTrafficPolicy: Cluster
+  ports:
+    - port: 3001
+      protocol: TCP
+      targetPort: 3001
+  selector:
+    app: sentiment
+    type: api
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}

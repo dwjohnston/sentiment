@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-docker build -t sentiment/content-api ./backend/content-api
+docker build -t quartercog/sentiment-content-api:latest ./backend/content-api

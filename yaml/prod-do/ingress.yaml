@@ -1,0 +1,35 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: sentiment-ingress
+  labels:
+    app: sentiment
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  backend:
+    serviceName: default-http-backend
+    servicePort: 80
+  rules:
+    - host: 35.197.181.227
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: template-frontend
+              servicePort: 80
+          - path: /api
+            backend:
+              serviceName: template-api
+              servicePort: 3001
+    - host: sentiment.example.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: sentiment-frontend
+              servicePort: 80
+          - path: /api/v1
+            backend:
+              serviceName: sentiment-content-api
+              servicePort: 3001

@@ -1,6 +1,6 @@
 import MongoClient from "mongodb";
 import express from "express";
-import getConfig from "../../common/config";
+import getConfig from "./config";
 import confArray from "./config.json";
 //import mongoose from "mongoose";
 const config = getConfig(confArray);
@@ -9,7 +9,7 @@ const app = express();
 function getDbString() {
   return `mongodb://${config.DB_CONTENT_API_USERNAME}:${
     config.DB_CONTENT_API_PASSWORD
-  }@${config.DB_URL}/${config.DB_NAME}`;
+    }@${config.DB_URL}/${config.DB_NAME}`;
 }
 
 const dbString = getDbString();
@@ -24,17 +24,17 @@ async function closeMongoConnection(client) {
   return client.close();
 }
 
-app.get("/test", async (req, res) => {
+app.get("/api/v1/test", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
   res.send(JSON.stringify({ value: Math.random() }));
 });
 
-app.get("/all", async (req, res) => {
+app.get("/api/v1/all", async (req, res) => {
   console.log("get all");
 
   try {
     const collection = client
-      .db(config.db.name)
+      .db(config.DB_NAME)
       .collection(config.DB_COLLECTION_NAME);
     const articles = await collection
       .find({})
@@ -50,8 +50,8 @@ app.get("/all", async (req, res) => {
 
 let client;
 app
-  .listen(config.express.port, async () => {
-    console.info(`Content API on port ${config.express.port}`);
+  .listen(config.port || 3001, async () => {
+    console.info(`Content API on port ${config.port || 3001}`);
     client = await openMongoConnection();
   })
   .on("close", () => {

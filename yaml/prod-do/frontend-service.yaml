@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: sentiment
+    type: frontend
+  name: sentiment-frontend
+  selfLink: /api/v1/namespaces/default/services/sentiment-frontend
+spec:
+  externalTrafficPolicy: Cluster
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 80
+  selector:
+    app: sentiment
+    type: frontend
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}

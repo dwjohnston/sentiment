@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sentiment-frontend
+  labels:
+    app: sentiment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sentiment
+      type: frontend
+  template:
+    metadata:
+      labels:
+        app: sentiment
+        type: frontend
+    spec:
+      containers:
+        - name: sentiment-frontend
+          image: quartercog/sentiment-frontend
+          imagePullPolicy: "Always"
+          ports:
+            - containerPort: 80

@@ -1,5 +1,5 @@
 import MongoClient from "mongodb";
-import getConfig from "../../common/config";
+import getConfig from "./config";
 import confArray from "./config.json";
 import fetch from "node-fetch";
 import assert from "assert";
@@ -17,9 +17,7 @@ function createEndpoint() {
 }
 
 function getDbString() {
-  return `mongodb://${config.DB_API_BOT_USERNAME}:${
-    config.DB_API_BOT_PASSWORD
-  }@${config.DB_URL}/${config.DB_NAME}`;
+  return `mongodb://${config.DB_API_BOT_USERNAME}:${config.DB_API_BOT_PASSWORD}@${config.DB_URL}/${config.DB_NAME}`;
 }
 const dbString = getDbString();
 const endPoint = createEndpoint();
@@ -61,7 +59,7 @@ function convertArticle(json, timeNow) {
 async function saveData(json) {
   const client = await openMongoConnection();
   const timeNow = Date.now();
-  const db = client.db(config.db.name);
+  const db = client.db(config.DB_NAME);
 
   try {
     await saveArticles(
@@ -86,6 +84,7 @@ async function fetchData() {
   }
 }
 
-console.info("start running");
+console.info("start running aaa");
+fetchData();
 setInterval(fetchData, config.POLLING_RATE);
 console.info("application is running");
